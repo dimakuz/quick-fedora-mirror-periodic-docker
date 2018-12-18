@@ -1,5 +1,5 @@
 #!/bin/bash -xe
 
-echo "$SCHED /sync-mirror.sh" > /etc/crontabs/root
+echo "$SCHED /sync-mirror.sh" >/etc/cron.d/sync-mirror
 
-/usr/sbin/crond -c /etc/crontabs -f
+/usr/sbin/crond -n -m off -p

@@ -4,7 +4,7 @@ LABEL image=dimakuz/quick-fedora-mirror-periodic-docker
 MAINTAINER Dima Kuznetsov "dmitrykuzn@gmail.com" 
 
 RUN \
-	dnf install -y git zsh rsync bash coreutils curl && \
+	dnf install -y git zsh rsync bash coreutils curl crontabs && \
 	dnf clean all && \
 	git clone https://pagure.io/quick-fedora-mirror.git
 
@@ -19,5 +19,6 @@ VOLUME /mirror
 ADD sync-mirror.sh /
 
 ENV SCHED="0 1 * * *"
+RUN sed -i -e 's~^\(session.*pam_loginuid.so\)$~#\1~' /etc/pam.d/crond
 ADD docker-entrypoint.sh /
 CMD /docker-entrypoint.sh
