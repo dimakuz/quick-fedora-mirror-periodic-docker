@@ -4,7 +4,7 @@ LABEL image=dimakuz/quick-fedora-mirror-periodic-docker
 MAINTAINER Dima Kuznetsov "dmitrykuzn@gmail.com" 
 
 RUN \
-	dnf install -y git zsh rsync bash coreutils curl crontabs && \
+	dnf install -y git zsh rsync bash coreutils curl crontabs findutils && \
 	dnf clean all && \
 	git clone https://pagure.io/quick-fedora-mirror.git
 
